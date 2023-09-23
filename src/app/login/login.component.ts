@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AppUser } from '../app.user';
+import { AppUser } from './app.user';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
@@ -15,7 +15,7 @@ export class LoginComponent {
     private httpService: HttpGeneralService) {
   }
 
-  User: AppUser = { Login: 'Jmaria', Password: 'bnbnbn', Email: 'joao_maria001@hotmail.com' }
+  User: AppUser = { Login: '', Password: '', Email: '' }
   LoginValidate(param: AppUser): void {
     // this.cookieService.set("oauth", "32367tg", 1, "", "", true,)
     // this.cookieService.set("username", "32367tg", 1, "", "", true,)
@@ -25,19 +25,33 @@ export class LoginComponent {
 
     this.httpService.get('testeapi').subscribe(
       (data: any) => {
-        console.log(data);
-     })
-    let url = "security/token";
-    let body = {
-      username: 'suporte@cartv.com.br',
-      password: 'bozo',
-      grant_type: 'password'
-    };
-    //let _data = "username=" + body.username + "&password=" + body.password + "&grant_type=password" + "&CallFrom=Browser";
-    let _data = "username=832709121111521234621385165660&password=843277443592521695810607121941665817510274010250644730343798165255343077&grant_type=password&Cartv-Token=0&CallFrom=Browser"
-    this.httpService.post(url,_data).subscribe(
-      (data: any) => {
-        console.log(data);
+        console.(log(data);
       })
+    let _data:string = "username" ;
+    _data+="password";
+    _data+=this.Salt(param.Password);
+    _data += "grant_type=passsword"
+    this.httpService.post("security/token", _data).subscribe(
+      (response: any) => {
+        console.log(response)
+      })
+  }
+
+  Salt(key: string): string {
+    let _byte1 = 0;
+    let _byte2 = 0;
+    let _byte3 = 0;
+    let _byte4 = "";
+    let _byte5 = "";
+    for (let i = 0; i < key.length; i++) {
+      _byte1 = parseInt(key.substr(i, 1).charCodeAt(0).toString())
+      _byte2 = Math.floor((Math.random() * 700) + 1);
+      _byte3 = _byte1 + _byte2;
+      _byte4 += ('0000' + _byte3.toString()).slice(-3) + ('0000' + _byte2.toString()).slice(-3)
+    }
+    for (var x = 0; x < _byte4.length; x += 2) {
+      _byte5 += _byte4.substr(x + 1, 1) + _byte4.substr(x, 1);
+    }
+    return _byte5;
   }
 }
