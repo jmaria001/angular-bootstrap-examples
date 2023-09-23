@@ -101,11 +101,60 @@
             ],
             "scripts": []
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-examples:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-bootstrap-examples:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-examples:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "angular-bootstrap-examples:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "angular-bootstrap-examples:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "angular-bootstrap-examples:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "228db115-51aa-43f7-adc4-7aa13708e9e6"
+    "analytics": "228db115-51aa-43f7-adc4-7aa13708e9e6",
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }
