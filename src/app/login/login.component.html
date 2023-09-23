@@ -1,0 +1,30 @@
+<div id="loginBox" class="loginBox shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="h-100  align-items-center justify-content-center">
+      <div class="login-header">
+        <div class="avatar">
+          <img src="./assets/img/avatar.png" alt="Avatar">
+        </div>
+        <div class="login-title">
+          <h4>Login</h4>
+        </div>
+      </div>
+      <div class="login-content">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" name="username" placeholder="Username" required="required"
+              autocomplete="username" [(ngModel)]="User.Login">
+          </div>
+          <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Password" required="required"
+              autocomplete="current-password" [(ngModel)]="User.Password" > 
+          </div>
+          <div class="d-grid">
+            <button type="button" class="btn btn-primary  btn-block login-btn" (click)="LoginValidate(User)">Login</button>
+          </div>
+        </form>
+        
+        <div class="login-footer">
+          <a href="#">Forgot Password?</a>
+        </div>
+      </div>
+    </div>

@@ -1,0 +1,90 @@
+.loginBox {
+    border: solid 1px #aaa0a0;
+    width: 350px;
+    margin: 70px auto 0;
+    background-color: #f5f5f5;
+
+  }
+  
+
+  .login-content {
+    padding: 20px 10px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .login-header {
+    border-bottom: none;
+    position: relative;
+    justify-content: center;
+  }
+  
+  .loginBox .form-control:focus {
+    border-color: #70c5c0;
+  }
+  
+  .loginBox .form-control,
+  .loginBox .btn {
+    min-height: 40px;
+    border-radius: 3px;
+  }
+  
+  
+  .login-footer {
+    background: #ecf0f1;
+    border-color: #dee4e7;
+    text-align: center;
+    justify-content: center;
+   // margin: 0 -20px -20px;
+    border-radius: 5px;
+    font-size: 13px;
+    //padding: 20px 10px;
+    padding: 0px;
+    margin-top: 20px;
+  
+  }
+  
+  .login-footer a {
+    color: #999;
+  }
+  
+  .login-title {
+    text-align: center;
+    font-size: 26px;
+    margin: 40px 0 0px;
+  }
+  
+  .loginBox .avatar {
+    // position: absolute;
+    margin: -40px auto;
+    // left: 0;
+    //right: 0;
+    //top: -70px;
+    width: 95px;
+    height: 95px;
+    border-radius: 50%;
+    z-index: 9;
+    background: #60c7c1;
+    padding: 15px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+  }
+  
+  .loginBox .avatar img {
+    width: 100%;
+  }
+  
+  .loginBox .btn {
+    color: #fff;
+    border-radius: 4px;
+    background: #60c7c1;
+    text-decoration: none;
+    transition: all 0.4s;
+    line-height: normal;
+    border: none;
+  }
+  
+  .loginBox .btn:hover,
+  .loginBox .btn:focus {
+    background: #45aba6;
+    outline: none;
+  }
