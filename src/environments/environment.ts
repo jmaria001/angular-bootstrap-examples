@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiRoute:'http://localhost/backend/api/'
+  apiRoute:'http://localhost/SIMHOMOLOG-api/API/'
 }
 
 /*

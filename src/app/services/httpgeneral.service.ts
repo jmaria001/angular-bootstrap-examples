@@ -12,12 +12,21 @@ export class HttpGeneralService {
   }
 
   post(apiRoute: string, body: any) {
-    return this.http.post(`${this.url + apiRoute}`, body, { headers: this.getHttpHeaders() });
-    return this.http.post(`${this.url + apiRoute}`, body, { headers: this.getHttpHeaders() });
+  
+
+  const head = new HttpHeaders()
+  //.add('Content-Type','x-www-form-urlencoded')
+  //.append('CallFrom', 'Browser');7
+
+    
+    //return this.http.post(`${this.url + apiRoute}`, body, { headers: this.getHttpHeaders() });
+    //return this.http.post(`${this.url + apiRoute}`, body, { headers:head });
+    return this.http.post(`${this.url + apiRoute}`, body);
   }
 
   get(apiRoute: string) {
-    return this.http.get(`${this.url + apiRoute}`, { headers: this.getHttpHeaders() });
+    // return this.http.get(`${this.url + apiRoute}`, { headers: this.getHttpHeaders() });
+    return this.http.get(`${this.url + apiRoute}`);
   }
 
   put(apiRoute: string, body: any) {
@@ -30,6 +39,12 @@ export class HttpGeneralService {
 
   getHttpHeaders(): HttpHeaders {
     //return new HttpHeaders().set("key", "value");
-    return new HttpHeaders().set("Content-Type", "x-www-form-urlencoded");
+    //let head:HttpHeaders= new HttpHeaders();
+    //head.append("CallFrom","Browser")
+    //head.append("Content-Type","x-www-form-urlencoded")
+    //return new HttpHeaders().set("Content-Type", "x-www-form-urlencoded");
+    return new HttpHeaders().append("teste 1","value21");
+    
+    //return head;
   }
 }

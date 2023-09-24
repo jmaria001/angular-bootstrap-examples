@@ -23,19 +23,30 @@ export class LoginComponent {
     // this.co.app_IsLogged=true;
     // this._Router.navigateByUrl('/portal')
 
-    this.httpService.get('testeapi').subscribe(
-      (data: any) => {
-        console.(log(data);
-      })
-    let _data:string = "username" ;
-    _data+="password";
-    _data+=this.Salt(param.Password);
-    _data += "grant_type=passsword"
+    // this.httpService.get('testeapi').subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //   })
+     let _data:string = "username=" ;
+     _data+= this.Salt(param.Login)
+        _data+="&password=";
+        _data+=this.Salt(param.Password);
+        _data += "&grant_type=password";
+        _data += "&CallFrom=Browser";
+    //let _data:string = 'username=622940076793866701621859365465&password=210415632408944162643067554748054504565638243055621399321798310037944304&grant_type=password&Cartv-Token=0&CallFrom=Browser';
     this.httpService.post("security/token", _data).subscribe(
       (response: any) => {
-        console.log(response)
-      })
-  }
+        if (response.access_token) {
+          this.cookieService.set("oauth", response.access_token, 1, "", "", true,)
+           this.co.app_IsLogged=true;
+            this._Router.navigateByUrl('/portal');
+        }
+        else
+        {
+          console.log("login invalido");
+        }
+      });
+  };
 
   Salt(key: string): string {
     let _byte1 = 0;
