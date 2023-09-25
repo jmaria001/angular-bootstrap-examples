@@ -1,16 +1,14 @@
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
-      <!-- <img src="./assets/img/logo.png" alt="" height="35"> -->
-      TSApp
+      <img src="./assets/img/logo.png" alt="" height="35">
     </a>
     <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" [hidden]="!app_IsLogged"></span>
+      <span class="navbar-toggler-icon" [hidden]="!app_credential.IsLogged"></span>
     </button>
     <div class=" collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav ms-auto" [hidden]="!app_IsLogged">
+      <ul class="navbar-nav ms-auto" [hidden]="!app_credential.IsLogged">
         <li class="nav-item">
           <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
         </li>
@@ -45,22 +43,34 @@
           </ul>
         </li>
         <li class="nav-item">
-          <button type="button"  class="btn btn-warning" (click)="AppLogout()">Logout</button>
+          <button type="button" class="btn btn-warning" (click)="AppLogout()">Logout</button>
         </li>
+        <!-- <div class="app-contact">
+            <span>{{app_credential.UserLogin}}</span>
+            <span>{{app_credential.Email}}</span>
+        </div> -->
       </ul>
     </div>
   </div>
 </nav>
 
 <div class="app-heading app-heading-bordered app-heading-page">
-  <div class="col-md-6">
-    <div class="title">
-      <p style="font-weight:bold;font-size:15px">{{app_CurrentRout}}</p>
+  <div class=row>
+    <div class="col-md-10">
+      <div class="title">
+        <p style="font-weight:bold;font-size:15px">{{app_CurrentRout}}</p>
+      </div>
+    </div>
+    <div class="col-md-2 hidden-mobile">
+      <div class="app-contact">
+        <span style="font-weight: bold;color:blue">{{app_credential.UserLogin}}</span>
+        <span style="overflow:hidden;">{{app_credential.Email}}</span>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- ========rotas -->
-<div id="divRouter" *ngIf="app_CanNavigate">
-<router-outlet></router-outlet>
-</div>
+
+  <!-- ========rotas -->
+  <div id="divRouter" *ngIf="app_CanNavigate">
+    <router-outlet></router-outlet>
+  </div>

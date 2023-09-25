@@ -4,10 +4,18 @@
     padding: 10px;
     background: #F9F9F9;
     background-color: #adb5db;height: 40px;
+    height: 50px;
+   
   }
   
 .app-contact{
-  background-color: #fff;
+  background-color: #f5d7d7;
   color:#000;
-  float:right
+  padding: 0px 10px;
+  margin-left: 10px;
 }
+.app-contact span{
+  display: block;
+  font-size:11px;
+}
+

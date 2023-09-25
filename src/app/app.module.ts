@@ -30,7 +30,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     RouteGuardService, 
     HttpGeneralService,
     {provide: LocationStrategy, useClass: HashLocationStrategy}
-    
   ],
   bootstrap: [AppComponent]
 })

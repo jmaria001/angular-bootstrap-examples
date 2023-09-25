@@ -11,40 +11,37 @@ import { HttpGeneralService } from '../services/httpgeneral.service';
 })
 export class LoginComponent {
   constructor(private cookieService: CookieService,
-    private _Router: Router, private co: AppComponent,
+    private _Router: Router, 
+    private co: AppComponent,
     private httpService: HttpGeneralService) {
   }
 
   User: AppUser = { Login: '', Password: '', Email: '' }
   LoginValidate(param: AppUser): void {
-    // this.cookieService.set("oauth", "32367tg", 1, "", "", true,)
-    // this.cookieService.set("username", "32367tg", 1, "", "", true,)
-    // this.cookieService.set("password", "32367tg", 1, "", "", true,)
-    // this.co.app_IsLogged=true;
-    // this._Router.navigateByUrl('/portal')
-
-    // this.httpService.get('testeapi').subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //   })
      let _data:string = "username=" ;
-     _data+= this.Salt(param.Login)
+        _data+= this.Salt(param.Login)
         _data+="&password=";
         _data+=this.Salt(param.Password);
         _data += "&grant_type=password";
         _data += "&CallFrom=Browser";
-    //let _data:string = 'username=622940076793866701621859365465&password=210415632408944162643067554748054504565638243055621399321798310037944304&grant_type=password&Cartv-Token=0&CallFrom=Browser';
+    
+    
     this.httpService.post("security/token", _data).subscribe(
       (response: any) => {
         if (response.access_token) {
-          this.cookieService.set("oauth", response.access_token, 1, "", "", true,)
-           this.co.app_IsLogged=true;
+          this.cookieService.set("oauth", response.access_token, 1, "", "", true,);
+           this.co.app_credential.IsLogged=true;
             this._Router.navigateByUrl('/portal');
+            this.httpService.get('GetUserData').subscribe(
+              (response: any) => {
+                this.co.app_credential.UserLogin = response.Login;
+                this.co.app_credential.Email = response.Email;
+              })
         }
         else
         {
           console.log("login invalido");
-        }
+        };
       });
   };
 

@@ -1,32 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
-
+import { CookieService } from 'ngx-cookie-service';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HttpGeneralService {
   url: string;
-  constructor(public http: HttpClient) {
+  constructor(private  http: HttpClient,
+    private  cookie:CookieService) {
     this.url = environment.apiRoute;
   }
-
   post(apiRoute: string, body: any) {
-  
-
-  const head = new HttpHeaders()
-  //.add('Content-Type','x-www-form-urlencoded')
-  //.append('CallFrom', 'Browser');7
-
     
-    //return this.http.post(`${this.url + apiRoute}`, body, { headers: this.getHttpHeaders() });
-    //return this.http.post(`${this.url + apiRoute}`, body, { headers:head });
-    return this.http.post(`${this.url + apiRoute}`, body);
+    const headers = new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    return this.http.post(`${this.url + apiRoute}`, body, { headers: headers });
   }
 
   get(apiRoute: string) {
-    // return this.http.get(`${this.url + apiRoute}`, { headers: this.getHttpHeaders() });
-    return this.http.get(`${this.url + apiRoute}`);
+    let oAutCookie:string = this.cookie.get("oauth")
+    const headers: any = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Authorization': 'Bearer ' + oAutCookie
+    }
+      return this.http.get(`${this.url + apiRoute}`, { headers: headers });
   }
 
   put(apiRoute: string, body: any) {
@@ -38,13 +36,6 @@ export class HttpGeneralService {
   }
 
   getHttpHeaders(): HttpHeaders {
-    //return new HttpHeaders().set("key", "value");
-    //let head:HttpHeaders= new HttpHeaders();
-    //head.append("CallFrom","Browser")
-    //head.append("Content-Type","x-www-form-urlencoded")
-    //return new HttpHeaders().set("Content-Type", "x-www-form-urlencoded");
-    return new HttpHeaders().append("teste 1","value21");
-    
-    //return head;
+    return new HttpHeaders().set("key", "value");
   }
 }
